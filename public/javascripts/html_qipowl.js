@@ -15,6 +15,7 @@ function deleteMappingKey(key) {
   });
 }
 function addMappingKey(section,key,value,enclosure) {
+  if (!enclosure) enclosure = 'void'
   $.ajax({
     url: '/html/mapping/' + section + '/' + key + '/' + value + '/' + enclosure,
     type: 'PUT',

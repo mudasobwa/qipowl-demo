@@ -60,7 +60,6 @@ module QipowlDemo
   before do
     session[:typo] ||= Qipowl::Ruler.new_bowler "html"
 #    raise session[:typo].class.constants.map(&:to_s).join(' ')
-    session[:mapping] ||= session[:typo].class::ENTITIES.rmerge({:custom => session[:typo].class::CUSTOM_TAGS}).to_json
   end
   
   get "/" do
@@ -77,17 +76,23 @@ module QipowlDemo
 
   get '/html/mapping' do
     content_type :json
-    session[:mapping]
+    session[:mapping] ||= session[:typo].class::ENTITIES.rmerge({:custom => session[:typo].class::CUSTOM_TAGS}).to_json
   end
   
-  delete '/html/mapping/:key' do |key|
+  delete '/html/mapping/:key',
+      :provides => [:html, :json],
+      :csrf_protection => false do |key|
     content_type :json
+    session[:mapping] = nil
     session[:typo].remove_entity(key.to_sym).to_json
   end
   
-  put '/html/mapping/:section/:key/:value/?:enclosure?' do |section, key, value, enclosure|
+  put '/html/mapping/:section/:key/:value(/:enclosure)',
+      :provides => [:html, :json],
+      :csrf_protection => false do |section, key, value, enclosure|
     content_type :json
-    session[:typo].add_entity(section.to_sym, key.to_sym, value.to_sym, enclosure ? enclosure.to_sym : nil).to_json
+    session[:mapping] = nil
+    session[:typo].add_entity(section.to_sym, key.to_sym, value.to_sym, enclosure != 'void' ? enclosure.to_sym : nil).to_json
   end
   
   get '/html/parse' do
