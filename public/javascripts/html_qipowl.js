@@ -47,10 +47,11 @@ function fillMapping() {
         '  </div>' + 
         '  <div class="form-group">' + 
         '    <select class="form-control" id="mapping-new-section" name="section">' +
+        '      <option>' + 'grip' + '</option>' + 
+        '      <option>' + 'self' + '</option>' + 
         '      <option>' + 'block' + '</option>' + 
         '      <option>' + 'alone' + '</option>' + 
         '      <option>' + 'magnet' + '</option>' + 
-        '      <option>' + 'grip' + '</option>' + 
         '      <option>' + 'regular' + '</option>' + 
         '    </select>' + 
         '  </div>' + 
