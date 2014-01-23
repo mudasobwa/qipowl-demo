@@ -19,8 +19,8 @@ gem 'therubyracer'
 gem 'rack-less'
 gem 'less'
 gem 'haml'
-gem 'activerecord', '>= 3.1', :require => 'active_record'
-gem 'sqlite3'
+# gem 'activerecord', '>= 3.1', :require => 'active_record'
+# gem 'sqlite3', :group => 'test'
 
 # Test requirements
 gem 'rspec', :group => 'test'
