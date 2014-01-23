@@ -1,0 +1,62 @@
+- content_for :custom_javascripts do
+  = javascript_include_tag 'html_qipowl'
+
+#syntaxrules.container
+
+%hr
+        
+.container
+  .row
+    .col-lg-6
+      %h2 Input text here:
+      %textarea#text.form-control.qipowl-input{ :type => 'text', :rows => '21', :name => 'text' }= "§1 Welcome!\n" + |
+        "\n" + |
+        "¶ Qipowl ≈helps≈ you to ≡format rich≡ using plain text.\n" + |
+        "\n" + |
+        "Previous para is, for instance (see ¶ in front?),\n" + |
+        "has “leading para” bootstrap class ( `class='lead'`).\n" + |
+        "\n" + |
+        "This is a plain para with slight ≡qipowl≡ markup. Note, that **good** *old* markdown is also works.\n" + |
+        "\n" + |
+        "• unbulleted lists:\n" + |
+        " • nice\n" + |
+        " • handy\n" + |
+        "• ordered lists are as well.\n" + |
+        "\n" + |
+        "★ Feel free to test:\n" + |
+        "\n" + |
+        "▷ bulleted lists — with “•” symbol\n" + |
+        "▷ data lists — with “▶”\n" + |
+        "▷ blockquotes — with “〉” and nesteds\n" + |
+        "▷ links — with “ ¹” and other human readables\n" + |
+        "\n" + |
+        "§3 Even bootstrap classes are available:\n" + |
+        "\n" + |
+        "• “☆” for “muted” text as well as descendants:\n" + |
+        " • “★” for “primary” text\n" + |
+        " • “☛” for “success” text\n" + |
+        " • “☞” for “info” text\n" + |
+        "• “☣” for “warning” text\n" + |
+        "• “☢” for “danger” text\n" + |
+        "\n" + |
+        "✍\n" + |
+        "Comments are visible in HTML source only\n" + |
+        "✍\n" + |
+        "\n" + |
+        "☆ ruby code snippet:\n" + |
+        "Λ ruby\n" + |
+        "def hello_world\n" + |
+        "  puts 'Hello, world!'\n" + |
+        "}\n" + |
+        "Λ\n" + |
+        "\n" + |
+        "Hope you’ll enjoy!" |
+
+      %button.btn.btn-success{ :type => 'submit', :onclick => 'parseIt();' } Parse!
+
+    .col-lg-6
+      %h2 Result:
+      #result.qipowl-output
+
+:javascript
+  $( document ).ready( function() { fillMapping(); parseIt(); } )

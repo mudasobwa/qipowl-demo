@@ -1,0 +1,33 @@
+!!! html
+%html{:lang => 'en'}
+  %head
+    %meta{:charset => 'utf8'}
+    %title= [@title, "Qipowl Demo"].compact.join(" ⇒ ")
+    = stylesheet_link_tag 'bootstrap', 'bootstrap-theme', 'qipowl'
+    = javascript_include_tag 'jquery', 'bootstrap', 'application'
+    = yield_content :custom_javascripts
+    = yield_content :include
+    :css
+      body {
+        padding-top: 60px /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+
+  %body
+    %header.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          %button.navbar-toggle{:'data-toggle' => 'collapse', :'data-target' => '.navbar-collapse'}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{:href => '/'} Qipowl Demo
+        %nav.navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li= link_to 'HTML', url_for(:html)
+            %li
+              %a{:href => 'http://github.com/mudasobwa/qipowl'} Source
+
+    #container
+      #main= yield
+    %footer
+      Copyright (©) 2013–2014 Mudasobwa!
