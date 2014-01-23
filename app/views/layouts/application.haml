@@ -15,18 +15,16 @@
 
   %body
     %header.navbar.navbar-inverse.navbar-fixed-top
-      .container
-        .navbar-header
-          %button.navbar-toggle{:'data-toggle' => 'collapse', :'data-target' => '.navbar-collapse'}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand{:href => '/'} Qipowl Demo
-        %nav.navbar-collapse.collapse
-          %ul.nav.navbar-nav
-            %li= link_to 'HTML', url_for(:html)
-            %li
-              %a{:href => 'http://github.com/mudasobwa/qipowl'} Source
+      .navbar-header
+        %button.navbar-toggle{:'data-toggle' => 'collapse', :'data-target' => '.navbar-collapse'}
+        %a.navbar-brand{:href => '/'}
+          =image_tag 'owl-32x32.png'
+          Qipowl Home
+      %nav.navbar-collapse.collapse
+        %ul.nav.navbar-nav
+          %li= link_to 'HTML', url_for(:html)
+          %li
+            %a{:href => 'http://github.com/mudasobwa/qipowl'} Source
 
     #container
       #main= yield
