@@ -34,5 +34,5 @@ end
 
 # Mounts the core application for this project
 
-Padrino.mount("QipowlDemo::Admin", :app_file => Padrino.root('admin/app.rb')).to("/admin")
-Padrino.mount('QipowlDemo::App', :app_file => Padrino.root('app/app.rb')).to('/')
+#Padrino.mount("QipowlDemo::Admin", :app_file => Padrino.root('admin/app.rb')).to("/admin")
+#Padrino.mount('QipowlDemo::App', :app_file => Padrino.root('app/app.rb')).to('/')
