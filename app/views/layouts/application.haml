@@ -2,6 +2,7 @@
 %html{:lang => 'en'}
   %head
     %meta{:charset => 'utf8'}
+    = favicon_tag 'owl-16x16.png'
     %title= [@title, "Qipowl Demo"].compact.join(" ⇒ ")
     = stylesheet_link_tag 'bootstrap', 'bootstrap-theme', 'qipowl'
     = javascript_include_tag 'jquery', 'bootstrap', 'application'
