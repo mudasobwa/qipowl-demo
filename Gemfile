@@ -43,5 +43,5 @@ gem 'padrino', '0.12.0.rc3'
 
 gem 'aquarium', '~> 0.6.0', :git => 'git://github.com/deanwampler/Aquarium.git'
 gem 'crochets'
-# gem 'qipowl', :path => '../qipowl'
-gem 'qipowl', '~> 0.9.2'
+#gem 'qipowl', :path => '../qipowl'
+gem 'qipowl', '~> 0.9.3'

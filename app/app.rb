@@ -59,7 +59,6 @@ module QipowlDemo
 
   before do
     session[:typo] ||= Qipowl::Ruler.new_bowler "html"
-#    raise session[:typo].class.constants.map(&:to_s).join(' ')
   end
   
   get "/" do
