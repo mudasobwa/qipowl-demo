@@ -22,13 +22,13 @@ gem 'rack-less'
 gem 'less'
 gem 'haml'
 # gem 'activerecord', '>= 3.1', :require => 'active_record'
-# gem 'sqlite3', :group => 'test'
+# gem 'sqlite3', :group => :test
 
 # Test requirements
-gem 'rspec', :group => 'test'
-gem 'capybara', :group => 'test'
-gem 'cucumber', :group => 'test'
-gem 'rack-test', :require => 'rack/test', :group => 'test'
+gem 'rspec', :group => :test
+gem 'capybara', :group => :test
+gem 'cucumber', :group => :test
+gem 'rack-test', :require => 'rack/test', :group => :test
 
 # Padrino Stable Gem
 gem 'padrino', '0.12.0.rc3'
@@ -43,5 +43,5 @@ gem 'padrino', '0.12.0.rc3'
 
 gem 'aquarium', '~> 0.6.0', :git => 'git://github.com/deanwampler/Aquarium.git'
 gem 'crochets'
-#gem 'qipowl', :path => '../qipowl'
-gem 'qipowl', '~> 0.9.3'
+gem 'qipowl', :git => 'git://github.com/mudasobwa/qipowl', :branch => 'master'
+#gem 'qipowl', '~> 0.9.3', :group => :production
