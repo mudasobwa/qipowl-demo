@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/mudasobwa/qipowl
-  revision: cc78f2e9dc97a277f4d7550874fa7eb15d215d52
+  revision: 38aded6d4db0085dfb2351e4fd6e29cbeacddbe7
   branch: master
   specs:
     qipowl (0.9.3)
