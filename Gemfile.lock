@@ -6,10 +6,10 @@ GIT
 
 GIT
   remote: git://github.com/mudasobwa/qipowl
-  revision: feba0829de9b717745798f275056f78d7b02b943
+  revision: 296733e400b19385b629f86aadaad7eeb4e432ab
   branch: master
   specs:
-    qipowl (0.9.3)
+    qipowl (0.9.5)
       aquarium (~> 0.6)
       crochets
       psych
@@ -27,7 +27,7 @@ GEM
       tzinfo (~> 0.3.37)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
-    builder (3.1.4)
+    builder (3.2.2)
     capybara (2.2.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
