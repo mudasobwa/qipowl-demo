@@ -1,11 +1,11 @@
 - content_for :custom_javascripts do
   = javascript_include_tag 'html_qipowl'
-
-#syntaxrules.container
-
-%hr
         
 .container
+  %hr
+  #buttonsbar
+  %hr
+
   .row
     .col-lg-6
       %h2 Input text here:
@@ -63,6 +63,10 @@
     .col-lg-6
       %h2 Result:
       #result.qipowl-output
+  
+%hr
+#syntaxrules.container
+
 
 :javascript
   $( document ).ready( function() { fillMapping(); parseIt(); } )
