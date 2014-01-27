@@ -125,19 +125,16 @@
           … Bah, I didn’t think most about tables yet. They are ugly.
       %h3#links Links
       %p
-        Links might be: -
-        %strong anchors
-        \- Wiki says¹http://wikipedia.org - Wiki clone¹/wiki - — Wikipedia, http://wikipedia.org
-        %br>/
-        the latter may be found in quotations only. -
-        %strong images
-        \- http://localhost/a.png - Best views of Hornsjø¹http://localhost/a.png -
-        %strong videos
-        \- http://youtu.be/SAJ_TzLqy1U - http://www.youtube.com/watch?v=SAJ_TzLqy1U
+        Links might be:
+      %dl
+        %dt anchors
+        %dd Wiki says¹http://wikipedia.org
+        %dt images
+        %dd Best views of Hornsjø¹http://localhost/a.png -
+        %dt videos
+        %dd http://youtu.be/SAJ_TzLqy1U (or http://www.youtube.com/watch?v=SAJ_TzLqy1U)
       %p
-        Abbrs are looking (and processing) mostly like links, but now we may forget about them: -
-        %strong abbrs
-        \- Wiki†Best online knowledge base ever†
+        Abbrs are looking (and processing) mostly like links(Wiki†Best online knowledge base ever†)
       %p Links are being parsed in the following manner:
       %ul
         %li
