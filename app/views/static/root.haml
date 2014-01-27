@@ -1,16 +1,158 @@
 .jumbotron
   .container
-    %h1 Qipowl rules
     %p
       %em Qipowl
-      is the next generation markup environment. It’s not the
-      markup language only, since it provides the very efficient and straightforward
-      library to produce custom markups. It′s not the markup library either,
-      since it comes with ready-to-use markdown-like markup and 2HTML converter.
-    %p
-      %a.btn.btn-primary.btn-lg{:href => "https://github.com/mudasobwa/qipowl#usage"} Learn more »»»
+      is the next generation parsing environment.
 
 .container
   .row
-    .col-lg-6
-    .col-lg-6
+    .col-lg-12
+      %h2#principles Principles
+      %p
+        %strong Qipowl
+        is a Ruby parsing library. The parsing is done via DSL exactly as
+        %a{:href => "http://en.wikipedia.org/wiki/Ouroboros"} Ouroboros
+        eats it’s own tail.
+      %p
+        The whole input is treated as Ruby source code and executed respectively. To prevent collisions of input with built-in ruby methods, the ASCII symbols in the input are being translated into their
+        %a{:href => "http://en.wikipedia.org/wiki/Halfwidth_and_fullwidth_forms#Chart"} fullwidth equivalents
+        before execution (and back to ASCII after the parsing is done.)
+      %p
+        Let’s say we have a string “Hello world” as input. It became ‘encoded’ into: “Ｈｅｌｌｏ ｗｏｒｌｄ”, executed as Ruby code (exactly as e. g.
+        %code puts rand
+        would) and finally ‘decoded’ back to ASCII. Whether the parser knows anything about 
+        %code Ｈｅｌｌｏ
+        or 
+        %code ｗｏｒｌｄ
+        it would be executed. Say, we have
+      %pre
+        %code
+          :preserve
+            def ｗｏｒｌｄ *args
+              "ｂｒａｖｅ ｎｅｗ \#{__callee__}"
+            end
+      %p thus the output will be:
+      %pre
+        %code # ⇒ Hello brave new world
+      %p
+        More about may be found at
+        = succeed "." do
+          %a{:href => "http://rocket-science.ru/qipowl/"} project page
+      %h2#applications Applications
+      %p
+        %strong Qipowl
+        has a wide list of applications. The “markright”, descendant of “markup” and “markdown” is presented
+        = succeed "." do
+          %a{:href => "http://qipowl.herokuapp.com"} here
+      %p
+        %strong Qipowl HTML
+        uses extended unicode symbols to specify more clean and readable source files and (boom!) ruby DSL to interpret them. E.g. the data definitions look like:
+      %pre
+        %code ▶ Data term — definition goes here
+      %p Headings:
+      %pre
+        %code §1 This is a second-level heading
+      %p Bold and emphasis:
+      %pre
+        %code The following ≡text≡ goes strong and this one is ≈emphasized≈.
+      %p Comments are possible as well:
+      %pre
+        %code
+          :preserve
+            ✍ FIXME! 
+            Not to forget add this to parsing!
+            ✍
+      %p etc.
+      %h2#why Why?
+      %p Just because it’s 2013 all around. Unicode came already and those fancy symbols are easily mapped to the keyboard layouts. The brackets, used in old good Markdown are ugly, look at how they might be introduced:
+      %pre
+        %code I like Markdown¹http://daringfireball.net/projects/markdown/syntax
+      %p Markdown lacks a lot of modern features (properties of text).
+      %p Markdown does not provide a blanket set of marks, fully covering claims to markup language.
+      %h2#parsing Parsing
+      %p
+        Parsing is the most sexy part of
+        %strong Qipowl
+        bowels, since it’s done almost without any external parsing; input files are the ruby scripts themselves. WTF? Let me explain.
+      %p Let we have an input file of the following structure:
+      %pre
+        %code
+          :preserve
+            §1 Qipowl
+            
+            ✍ FIXME 
+            include language reference here
+            ✍
+            
+            ≡Qipowl≡ is the most exciting ruby DSL application example. As it
+            is stated in markdown reference:
+            
+            〉 Readability, however, is emphasized above all else. 
+            A Markdown-formatted document should be publishable as-is, 
+            as plain text, without looking like it’s been marked up with 
+            tags or formatting instructions.
+            — http://daringfireball.net/projects/markdown/syntax
+      %p 
+        Now we simply give the source to ruby interpreter, which knowns, that
+        %code §1
+        is
+        %em in fact
+        ruby function, which transforms that to any other syntax we want. To HTML, for instance.
+      %h2#parsing-problems Parsing problems
+      %p Not all the constructions may be passed to ruby script as is. There are four exceptions:
+      %ul
+        %li
+          %strong> blockquotes
+          , which are in fact kinda documents inside documents, because they might be nested and they may include any other markup;
+        %li
+          %strong> images
+          ,
+          = succeed "," do
+            %strong videos
+          etc. which may be typed as the hyperlink only;
+        %li
+          %strong> anchors, abbrs etc.
+          , the elements which are not “symbol-text” formed. They rather are looking like “text-symbol-text” and unfortunately should be preparsed to supply correct ruby DSL;
+        %li
+          %strong> lists and data definitions
+          , are to be surrounded with
+          = succeed "/" do
+            %code &lt;ul&gt;
+          %code &lt;dd&gt;
+          tags;
+        %li
+          %strong> tables
+          … Bah, I didn’t think most about tables yet. They are ugly.
+      %h3#links Links
+      %p
+        Links might be: -
+        %strong anchors
+        \- Wiki says¹http://wikipedia.org - Wiki clone¹/wiki - — Wikipedia, http://wikipedia.org
+        %br>/
+        the latter may be found in quotations only. -
+        %strong images
+        \- http://localhost/a.png - Best views of Hornsjø¹http://localhost/a.png -
+        %strong videos
+        \- http://youtu.be/SAJ_TzLqy1U - http://www.youtube.com/watch?v=SAJ_TzLqy1U
+      %p
+        Abbrs are looking (and processing) mostly like links, but now we may forget about them: -
+        %strong abbrs
+        \- Wiki†Best online knowledge base ever†
+      %p Links are being parsed in the following manner:
+      %ul
+        %li
+          find the link in the input, according to simple pattern
+          %code URI.regexp
+        %li determine whether it is an image, video or link to page by downloading and analyzing the headers
+        %li TODO copying the image to the host computer, providing the watermark with copyright and any other significant information
+        %li TODO instead of previous two actions we might simply analyze it by extension e.g. if there is no internet connection available
+        %li prepending the link with special character (understood by DSL)
+      %p
+        After all is done, we yield smth like
+        %code ⚐ http://localhost.a.png
+        in place of
+        %code http://localhost.a.png
+        and
+        %code ⚓ http://localhost/index.html
+        in place of
+        %code http://localhost/index.html

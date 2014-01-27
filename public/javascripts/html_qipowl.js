@@ -115,12 +115,13 @@ function fillControl(data) {
   }).appendTo( "#syntaxrules" );
 }
 function onBarButton(caption) {
-  $("#text").insertAtCaret(caption);
+  $("#text").insertAtCaret(" " + caption + " ");
 }
 function createButton(bar, val, title) {
+  if (val.length != 1) return
   btn = $( "<button/>", {
     "class" : "btn btn-default",
-    "style" : "font-size: 12px; font-face: monospace;",
+    "style" : "font-size: 18px; font-face: monospace;",
     "title" : title,
     "id" : "id_" + val,
     html: val
