@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0'
+# ruby '2.1.0'
 
 # Distribute your app as a gem
 # gemspec
@@ -43,4 +43,5 @@ gem 'padrino', '0.12.0.rc3'
 
 gem 'aquarium', '~> 0.6.0', :git => 'git://github.com/deanwampler/Aquarium.git'
 gem 'crochets'
+gem 'typogrowth', :git => 'git://github.com/mudasobwa/typogrowth', :branch => 'master'
 gem 'qipowl', :git => 'git://github.com/mudasobwa/qipowl', :branch => 'master'

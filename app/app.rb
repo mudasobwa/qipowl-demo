@@ -1,5 +1,5 @@
-require 'cgi'
 require 'json'
+require 'typogrowth'
 require 'qipowl'
 
 module QipowlDemo
@@ -60,13 +60,17 @@ module QipowlDemo
   before do
     session[:typo] ||= Qipowl::Ruler.new_bowler "html"
   end
-  
+
   get "/" do
     render 'static/root'
   end
 
   get :html, :map => '/html' do
     render 'static/html'
+  end
+
+  get :typo, :map => '/typo' do
+    render 'static/typo'
   end
 
   get :tutorial, :map => '/tutorial' do
@@ -77,25 +81,30 @@ module QipowlDemo
     content_type :json
     session[:typo].class::ENTITIES.rmerge({:custom => session[:typo].class::CUSTOM_TAGS}).to_json
   end
-  
+
   delete '/html/mapping/:key',
       :provides => [:html, :json],
       :csrf_protection => false do |key|
     content_type :json
     session[:typo].remove_entity(key.to_sym).to_json
   end
-  
+
   put '/html/mapping/:section/:key/:value(/:enclosure)',
       :provides => [:html, :json],
       :csrf_protection => false do |section, key, value, enclosure|
     content_type :json
     session[:typo].add_entity(section.to_sym, key.to_sym, value.to_sym, enclosure != 'void' ? enclosure.to_sym : nil).to_json
   end
-  
-  get '/html/parse' do
-    str = CGI::parse(request.query_string)['text'].first
+
+  post '/html/parse', :csrf_protection => false do
+    return unless request.form_data? && request.params['text']
     content_type :html
-    session[:typo].execute str
+    session[:typo].execute request.params['text']
+  end
+
+  post '/typo/parse', :csrf_protection => false do
+    content_type :html
+    request.params['text'].typo
   end
 
     ##

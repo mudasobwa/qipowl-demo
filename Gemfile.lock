@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/mudasobwa/qipowl
-  revision: 120b8496caf0ba4818ea0cbff429b515eb7a26c1
+  revision: de33e0291ca7f327b112ae970a2ab466da8d1c52
   branch: master
   specs:
     qipowl (0.9.5)
@@ -15,6 +15,15 @@ GIT
       psych
       typogrowth (~> 0.9.0, >= 0.9.1)
       unicode
+
+GIT
+  remote: git://github.com/mudasobwa/typogrowth
+  revision: 36a72c43dd420a18d00236a45809b476b6b2f0a5
+  branch: master
+  specs:
+    typogrowth (0.9.7)
+      i18n
+      psych
 
 GEM
   remote: https://rubygems.org/
@@ -129,9 +138,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    typogrowth (0.9.1)
-      i18n
-      psych
     tzinfo (0.3.38)
     unicode (0.4.4)
     url_mount (0.2.1)
@@ -157,3 +163,4 @@ DEPENDENCIES
   rake
   rspec
   therubyracer
+  typogrowth!

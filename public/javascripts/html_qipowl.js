@@ -1,33 +1,5 @@
-jQuery.fn.extend({
-insertAtCaret: function(myValue){
-  return this.each(function(i) {
-    if (document.selection) {
-      //For browsers like Internet Explorer
-      this.focus();
-      var sel = document.selection.createRange();
-      sel.text = myValue;
-      this.focus();
-    }
-    else if (this.selectionStart || this.selectionStart == '0') {
-      //For browsers like Firefox and Webkit based
-      var startPos = this.selectionStart;
-      var endPos = this.selectionEnd;
-      var scrollTop = this.scrollTop;
-      this.value = this.value.substring(0, startPos)+myValue+this.value.substring(endPos,this.value.length);
-      this.focus();
-      this.selectionStart = startPos + myValue.length;
-      this.selectionEnd = startPos + myValue.length;
-      this.scrollTop = scrollTop;
-    } else {
-      this.value += myValue;
-      this.focus();
-    }
-  });
-}
-});
-
 function parseIt() {
-  $.get( "/html/parse", { text: $('#text').val() } )
+  $.post( "/html/parse", { text: $('#text').val() } )
     .done(function( data ) {
       $('#result').html (data)
     });
@@ -59,30 +31,30 @@ function fillControl(data) {
   $("#syntaxrules").append("<br><div id='syntaxrulesdiv' class='tab-content'></div>");
   var tabs = ["<li class='active'><a href='#mapping-show-hide' data-toggle='tab'>extend syntax</a></li>"];
   var control =
-    '<form id="newmapping" class="form-inline" role="form">' + 
-    '  <div class="form-group">' + 
-    '    <label class="sr-only" for="mapping-new-key">Key to add</label>' + 
-    '    <input class="form-control" id="mapping-new-key" name="key" placeholder="Key (e.g., “×”)">' + 
-    '  </div>' + 
-    '  <div class="form-group">' + 
-    '    <label class="sr-only" for="mapping-new-value">Value for key</label>' + 
-    '    <input class="form-control" id="mapping-new-value" name="value" placeholder="Value for key">' + 
-    '  </div>' + 
-    '  <div class="form-group">' + 
-    '    <label class="sr-only" for="mapping-new-enclosure">Enclosure for key</label>' + 
-    '    <input class="form-control" id="mapping-new-enclosure" name="enclosure" placeholder="Enclosure">' + 
-    '  </div>' + 
-    '  <div class="form-group">' + 
+    '<form id="newmapping" class="form-inline" role="form">' +
+    '  <div class="form-group">' +
+    '    <label class="sr-only" for="mapping-new-key">Key to add</label>' +
+    '    <input class="form-control" id="mapping-new-key" name="key" placeholder="Key (e.g., “×”)">' +
+    '  </div>' +
+    '  <div class="form-group">' +
+    '    <label class="sr-only" for="mapping-new-value">Value for key</label>' +
+    '    <input class="form-control" id="mapping-new-value" name="value" placeholder="Value for key">' +
+    '  </div>' +
+    '  <div class="form-group">' +
+    '    <label class="sr-only" for="mapping-new-enclosure">Enclosure for key</label>' +
+    '    <input class="form-control" id="mapping-new-enclosure" name="enclosure" placeholder="Enclosure">' +
+    '  </div>' +
+    '  <div class="form-group">' +
     '    <select class="form-control" id="mapping-new-section" name="section">';
     $.each( data, function( key, val ) {
       if (key != 'custom') control += '      <option>' + key + '</option>';
     });
-    control += 
-    '    </select>' + 
-    '  </div>' + 
-    '  <div class="form-group">' + 
+    control +=
+    '    </select>' +
+    '  </div>' +
+    '  <div class="form-group">' +
     '    <button type="submit" class="btn btn-submit">Add!</button>' +
-    '  </div>' + 
+    '  </div>' +
     '</form>';
   var divs = ["<div class='tab-pane fade active in' id='mapping-show-hide'><br>" + control + "</div>"];
   $.each( data, function( key, val ) {

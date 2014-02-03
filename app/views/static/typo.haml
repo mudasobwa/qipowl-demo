@@ -1,0 +1,28 @@
+- content_for :custom_javascripts do
+  = javascript_include_tag 'jquery_mine'
+  = javascript_include_tag 'html_typo'
+
+.container
+  %hr
+
+  .row
+    .col-lg-6
+      %h2 Input text here:
+      %textarea#text.form-control.typo-input{ :type => 'text', :rows => '21', :name => 'text' }= "" + |
+        "Sometimes we type 'negligently' - say , omitting proper " + |
+        "punctuation ..... 'There are no mdashes on the keyboard', we say " + |
+        ", shame on us. We use same symbol for inches (e.g. 5'2\" ), " + |
+        "minutes/seconds (in 5°2'3\"E), we forget about nested quotes: " + |
+        "'I'd say 'nonsense' about all that crap'. (Note the nesteds!)" + |
+        " Typo library does it's best to handle this cursory input." |
+
+      %button.btn.btn-success{ :type => 'submit', :onclick => 'typoIt();' } Typo!
+
+    .col-lg-6
+      %h2 Result:
+      #result.typo-output
+
+%hr
+
+:javascript
+  $( document ).ready( function() { typoIt(); } )

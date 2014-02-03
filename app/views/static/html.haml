@@ -1,6 +1,7 @@
 - content_for :custom_javascripts do
+  = javascript_include_tag 'jquery_mine'
   = javascript_include_tag 'html_qipowl'
-        
+
 .container
   %hr
   #buttonsbar
@@ -27,19 +28,19 @@
         "\n" + |
         "★ Feel free to test:\n" + |
         "\n" + |
-        "▷ bulleted lists — with “•” symbol\n" + |
-        "▷ data lists — with “▶”\n" + |
-        "▷ blockquotes — with “〉” and nesteds\n" + |
-        "▷ links — with “ ¹” and other human readables\n" + |
+        "▷ bulleted lists — with “ • ” symbol\n" + |
+        "▷ data lists — with “ ▶ ”\n" + |
+        "▷ blockquotes — with “ 〉 ” and nesteds\n" + |
+        "▷ links — with “ ¹ ” and other human readables\n" + |
         "\n" + |
         "§3 Even bootstrap classes are available:\n" + |
         "\n" + |
-        "• “☆” for “muted” text as well as descendants:\n" + |
-        " • “★” for “primary” text\n" + |
-        " • “☛” for “success” text\n" + |
-        " • “☞” for “info” text\n" + |
-        "• “☣” for “warning” text\n" + |
-        "• “☢” for “danger” text\n" + |
+        "• ☆  for “muted” text as well as descendants:\n" + |
+        " • ★  for “primary” text\n" + |
+        " • ☛  for “success” text\n" + |
+        " • ☞  for “info” text\n" + |
+        "• ☣  for “warning” text\n" + |
+        "• ☢  for “danger” text\n" + |
         "\n" + |
         "✍\n" + |
         "Comments are visible in HTML source only\n" + |
@@ -63,7 +64,7 @@
     .col-lg-6
       %h2 Result:
       #result.qipowl-output
-  
+
 %hr
 #syntaxrules.container
 
